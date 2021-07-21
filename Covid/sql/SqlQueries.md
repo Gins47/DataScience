@@ -31,4 +31,8 @@ where continent is null
 Group by location
 order by HighestDeath desc;
 
-select continent from covid_dataset Group by continent;
+--- Total cases , total death and percentage by date
+
+select date,sum(new_cases) as Total_New_cases , sum(cast(new_deaths as int )) as Total_New_Deaths ,
+sum(cast(new_deaths as int )) / sum(new_cases) \* 100 as New_Death_Percentage from covid_dataset
+where continent is not null group by date order by 1,2;
